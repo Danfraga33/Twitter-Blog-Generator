@@ -1,27 +1,40 @@
 {
-  "name": "my-appts",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "react": "latest",
-    "react-dom": "latest",
-    "next": "latest"
-  },
-  "devDependencies": {
-    "typescript": "latest",
-    "@types/react": "latest",
-    "@types/node": "latest",
-    "@types/react-dom": "latest",
-    "autoprefixer": "latest",
-    "postcss": "latest",
-    "tailwindcss": "latest",
-    "eslint": "latest",
-    "eslint-config-next": "latest"
-  }
+	"name": "my-appts",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"@fortawesome/fontawesome-svg-core": "^6.4.2",
+		"@fortawesome/free-solid-svg-icons": "^6.4.2",
+		"@fortawesome/react-fontawesome": "^0.2.0",
+		"@heroicons/react": "^2.0.18",
+		"next": "latest",
+		"openai": "^4.14.2",
+		"react": "latest",
+		"react-dom": "latest",
+		"react-icons": "^4.11.0"
+	},
+	"devDependencies": {
+		"@types/node": "latest",
+		"@types/react": "latest",
+		"@types/react-dom": "latest",
+		"@typescript-eslint/eslint-plugin": "^6.9.1",
+		"@typescript-eslint/parser": "^6.9.1",
+		"autoprefixer": "latest",
+		"eslint": "latest",
+		"eslint-config-next": "^14.0.1",
+		"eslint-config-prettier": "^9.0.0",
+		"eslint-import-resolver-node": "^0.3.9",
+		"eslint-plugin-prettier": "^5.0.1",
+		"eslint-plugin-react": "^7.33.2",
+		"postcss": "latest",
+		"prettier": "^3.0.3",
+		"tailwindcss": "latest",
+		"typescript": "latest"
+	}
 }
