@@ -1,6 +1,6 @@
 import AppLayout from "../../components/Applayout";
-import React, { FC, ReactElement } from "react";
-import { ReactNode } from "react";
+import React, { FC, ReactElement , ReactNode } from "react";
+
 import { NextPage } from "next";
 import { NextPageWithLayout } from "../_app";
 import { Page } from "../Types/LayoutTypes";

@@ -1,5 +1,5 @@
 import { Html, Head, Main, NextScript } from "next/document";
-import React from "react";
+import React from "react"; // eslint-disable-line
 
 export default function Document() {
   return (

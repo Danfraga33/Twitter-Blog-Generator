@@ -1,6 +1,6 @@
-import { BsFillChatDotsFill } from "react-icons/bs";
+import { BsFillChatDotsFill , BsPencilSquare } from "react-icons/bs";
 import { AiOutlineAreaChart } from "react-icons/ai";
-import { BsPencilSquare } from "react-icons/bs";
+
 import { FaRobot } from "react-icons/fa";
 import React, { FC, ReactElement } from "react";
 import FeatureItem from "./FeatureItem";

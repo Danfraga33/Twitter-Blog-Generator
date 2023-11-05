@@ -1,5 +1,5 @@
 import AppLayout from "../../components/Applayout";
-import React, { FC, ReactElement } from "react";
+import React from "react";
 import { NextPageWithLayout } from "../_app";
 
 const TokenTopup: NextPageWithLayout = () => {

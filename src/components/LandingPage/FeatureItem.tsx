@@ -1,7 +1,7 @@
 import { FC, ReactNode } from "react";
 import { NextPage } from "next";
 import { BsFillChatDotsFill } from "react-icons/bs";
-import { IconType } from "react-icons/lib";
+// import { IconType } from "react-icons/lib";
 
 type FeatureItemProps = {
   Icon: IconType;
