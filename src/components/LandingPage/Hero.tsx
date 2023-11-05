@@ -1,12 +1,13 @@
 import Link from "next/link";
-import React, { FC, ReactElement } from "react";
+import React from "react"; //
 import { NextPage } from "next";
+import Image from "next/image";
 
 const Hero: NextPage = () => {
   return (
     <main className="container mt-4 md:flex flex-row-reverse justify-between items-center">
       <div className="md:max-w-[50%]">
-        <img src="./images/amico.svg" alt="hero" />
+        <Image src="./images/amico.svg" alt="hero" />
       </div>
 
       {/* text section */}

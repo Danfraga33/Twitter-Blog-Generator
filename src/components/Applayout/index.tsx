@@ -2,7 +2,7 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoins } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
-import React from "react";
+import React from "react"; // eslint-disable-line
 import { LayoutProps } from "./types/TAppLayoutProps";
 
 const AppLayout = ({ children }: LayoutProps) => {
