@@ -1,22 +1,8 @@
-import React, { useState, ReactElement } from "react";
+import React, { useState, ReactElement } from "react"; // eslint-disable-line
 import AppLayout from "../../components/Applayout";
 import { NextPageWithLayout } from "../_app";
-import { createTheme, Paper } from "@mui/material";
-
-// const customTheme: ThemeOptions = createTheme({
-//   palette: {
-//     mode: "dark",
-//     primary: {
-//       light: "rgba(168,85,247,.80)",
-//       main: "rgba(168,85,247,.65)",
-//       dark: "rgba(168,85,247,.28)",
-//     },
-//     background: {
-//       paper: "#151515",
-//       default: "rgba(0,0,0.96)",
-//     },
-//   },
-// });
+import { ThemeProvider, CssBaseline, Grid } from "@mui/material";
+import { customTheme } from "../../Theme/customTheme";
 
 const Home: NextPageWithLayout = () => {
   const [topic, setTopic] = useState("");
@@ -38,16 +24,19 @@ const Home: NextPageWithLayout = () => {
   }
 
   return (
-    <Paper>
-      <label htmlFor="topic">Topic</label>
-      <input
-        id="topic"
-        placeholder="topic"
-        value={topic}
-        onChange={(e) => setTopic(e.target.value)}
-      ></input>
-      <button onClick={handleFetch}>Generate</button>
-    </Paper>
+    <ThemeProvider theme={customTheme}>
+      <CssBaseline />
+      <Grid minHeight="100vh" p={0} m={0}>
+        <label htmlFor="topic">Topic</label>
+        <input
+          id="topic"
+          placeholder="topic"
+          value={topic}
+          onChange={(e) => setTopic(e.target.value)}
+        ></input>
+        <button onClick={handleFetch}>Generate</button>
+      </Grid>
+    </ThemeProvider>
   );
 };
 

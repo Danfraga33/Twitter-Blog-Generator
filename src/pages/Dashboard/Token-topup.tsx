@@ -1,6 +1,8 @@
 import AppLayout from "../../components/Applayout";
-import React from "react";
+import React from "react"; // eslint-disable-line
 import { NextPageWithLayout } from "../_app";
+import { customTheme } from "../../Theme/customTheme";
+import { ThemeProvider, CssBaseline } from "@mui/material";
 
 const TokenTopup: NextPageWithLayout = () => {
   return (
@@ -12,9 +14,12 @@ const TokenTopup: NextPageWithLayout = () => {
 
 TokenTopup.getLayout = function getLayout(page) {
   return (
-    <div>
-      <AppLayout>{page}</AppLayout>
-    </div>
+    <ThemeProvider theme={customTheme}>
+      <CssBaseline />
+      <div>
+        <AppLayout>{page}</AppLayout>
+      </div>
+    </ThemeProvider>
   );
 };
 
