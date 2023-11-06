@@ -17,9 +17,11 @@
     "@heroicons/react": "^2.0.18",
     "@mui/icons-material": "^5.14.11",
     "@mui/material": "^5.14.16",
+    "mongodb": "^6.2.0",
     "next": "latest",
     "openai": "^4.14.2",
     "react": "latest",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "latest",
     "react-icons": "^4.11.0"
   },
