@@ -9,14 +9,6 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import DoneIcon from "@mui/icons-material/Done";
 
-async function MongoDB() {
-  const response = await fetch("/api/DB", { method: "POST" });
-  if (response.ok) {
-    const data = await response.json();
-    console.log(data);
-  }
-}
-
 function Twitter() {
   const [topic, setTopic] = useState("");
   const [result, setResult] = useState("");
@@ -32,11 +24,29 @@ function Twitter() {
       });
       if (response.ok) {
         const json = await response.json();
-        // console.log(json);
         setResult(json);
       } else {
         console.error("Error:", response.statusText);
       }
+    }
+  }
+
+  const dataForSaving = {
+    topic: topic,
+    result: result,
+  };
+
+  async function MongoDB() {
+    const response = await fetch("/api/DB", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataForSaving),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data);
     }
   }
 
@@ -113,11 +123,13 @@ function Twitter() {
               value={result}
             />
           </div>
+
           <Button
             variant="outlined"
             size="large"
             color="secondary"
             onClick={MongoDB}
+            disabled={!result}
           >
             Save
           </Button>

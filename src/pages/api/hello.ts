@@ -18,8 +18,7 @@ export default async function handler(
       },
       {
         role: "user",
-        content: `Give me a twitter post about ${body} in first person. The post should be under 260 characters. 
-		  
+        content: `Give me a twitter post about ${body} in first person. The post should be under 260 characters. Do NOT surrond the response in quotation marks.
 		  `,
       },
     ],

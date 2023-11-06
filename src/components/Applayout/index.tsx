@@ -2,10 +2,26 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoins } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
-import React from "react"; // eslint-disable-line
+import React, { useEffect, useState } from "react"; // eslint-disable-line
 import { LayoutProps } from "./types/TAppLayoutProps";
+import { Feature } from "../Sidebar/Post/_PostDescription";
 
 const AppLayout = ({ children }: LayoutProps) => {
+  const [posts, setPosts] = useState([]);
+
+  async function getData() {
+    const response = await fetch("/api/DB", {
+      method: "GET",
+    });
+    if (response.ok) {
+      const json = await response.json();
+      setPosts(json);
+    }
+  }
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <div className="grid grid-cols-[300px_1fr] h-screen max-h-screen">
       <div className="flex flex-col text-white overflow-hidden">
@@ -43,8 +59,24 @@ const AppLayout = ({ children }: LayoutProps) => {
           </Link>
         </div>
         <div className="flex-1 overflow-auto bg-gradient-to-b from-slate-800 to-cyan-800">
-          list of posts
+          <h1>Posts</h1>
+          <Feature />
+          {Object.values(posts).map((post, index) => {
+            return (
+              <ul key={index}>
+                <li>
+                  <span>Topic:</span>
+                  {post.topic}
+                </li>
+                <li>
+                  <span>Post:</span>
+                  {post.result}
+                </li>
+              </ul>
+            );
+          })}
         </div>
+
         <div className="bg-cyan-800">user information</div>
       </div>
       <div>{children}</div>
