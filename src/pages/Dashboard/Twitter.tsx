@@ -3,14 +3,24 @@ import AppLayout from "../../components/Applayout";
 import { ThemeProvider, CssBaseline, Grid, TextField } from "@mui/material";
 import { customTheme } from "../../Theme/customTheme";
 import Button from "@mui/material/Button";
-
 import Stack from "@mui/material/Stack";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import DoneIcon from "@mui/icons-material/Done";
+
+async function MongoDB() {
+  const response = await fetch("/api/DB", { method: "POST" });
+  if (response.ok) {
+    const data = await response.json();
+    console.log(data);
+  }
+}
 
 function Twitter() {
   const [topic, setTopic] = useState("");
   const [result, setResult] = useState("");
+  const [copiedText, setCopiedText] = useState(false);
   async function handleFetch() {
     if (topic) {
       const response = await fetch("/api/hello", {
@@ -84,9 +94,15 @@ function Twitter() {
             <div className="flex gap-2 py-2">
               <h2>Results</h2>
               <span>
-                <button>
-                  {result && <ContentCopyIcon fontSize="small" />}
-                </button>
+                <CopyToClipboard
+                  text={result}
+                  onCopy={() => setCopiedText(true)}
+                >
+                  <button>
+                    {result && <ContentCopyIcon fontSize="small" />}
+                  </button>
+                </CopyToClipboard>
+                {copiedText ? <DoneIcon color="primary" /> : null}
               </span>
             </div>
             <TextField
@@ -97,6 +113,14 @@ function Twitter() {
               value={result}
             />
           </div>
+          <Button
+            variant="outlined"
+            size="large"
+            color="secondary"
+            onClick={MongoDB}
+          >
+            Save
+          </Button>
         </Stack>
       </Grid>
     </ThemeProvider>
