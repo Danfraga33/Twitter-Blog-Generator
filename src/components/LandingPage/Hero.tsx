@@ -1,13 +1,12 @@
 import Link from "next/link";
-import React from "react"; //
+import React from "react";
 import { NextPage } from "next";
 import Image from "next/image";
-
 const Hero: NextPage = () => {
   return (
     <main className="container mt-4 md:flex flex-row-reverse justify-between items-center">
       <div className="md:max-w-[50%]">
-        <Image src="./images/amico.svg" alt="hero" />
+        <Image src="./images/amico.svg" width={600} height={560} alt="hero" />
       </div>
 
       {/* text section */}
@@ -21,7 +20,7 @@ const Hero: NextPage = () => {
           Engagement, and Elevate Your Brand!
         </p>
         <div className="mt-8 flex items-center justify-around sm:justify-start sm:space-x-8">
-          <Link href="../Dashboard/Home" className="primary-button w-full">
+          <Link href="../Dashboard/Twitter" className="primary-button w-full">
             <span className="flex items-center justify-center">
               Get Started
             </span>
