@@ -61,7 +61,7 @@ const AppLayout = ({ children }: LayoutProps) => {
             </Link>
           </div> */}
           <Link
-            href="/Dashboard/token-topup"
+            href="/Dashboard/Token-topup"
             className="block mt-2 text-center"
           >
             <FontAwesomeIcon icon={faCoins} className="text-yellow-500" />0

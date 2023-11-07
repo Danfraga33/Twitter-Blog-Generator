@@ -13,7 +13,7 @@ export const BasicCard: FC<TCard> = (props): ReactElement => {
   const { topic = "Add a Post", result = "Lorem" } = props;
   const [isPosted, setIsPosted] = useState(false);
   const theme = useTheme();
-  console.log(customTheme);
+
   return (
     <Card sx={{ backgroundColor: "#a2a2c2", maxWidth: 300 }}>
       <CardContent>
