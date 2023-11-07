@@ -2,11 +2,10 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoins } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
-import React, { useEffect, useState, FC } from "react"; // eslint-disable-line
+import React, { useEffect, useState } from "react"; // eslint-disable-line
 import { LayoutProps } from "./types/TAppLayoutProps";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import { Typography } from "@mui/material";
 import { BasicCard } from "../Sidebar/Post/Card";
@@ -48,19 +47,19 @@ const AppLayout = ({ children }: LayoutProps) => {
             </Link>
           </div>
           <Link
-            href="/Dashboard/twitter "
+            href="/Dashboard/Twitter "
             className="bg-green-500 tracking-wider w-full text-center text-white font-bold uppercase px-4 py-2 rounded-md hover:bg-green-600 transition-colors block"
           >
             Twitter
           </Link>
-          <div className="py-2">
+          {/* <div className="py-2">
             <Link
               href="/Dashboard/twitter "
               className="bg-green-500 tracking-wider w-full text-center text-white font-bold uppercase px-4 py-2 rounded-md hover:bg-green-600 transition-colors block"
             >
               Blog
             </Link>
-          </div>
+          </div> */}
           <Link
             href="/Dashboard/token-topup"
             className="block mt-2 text-center"
@@ -72,47 +71,34 @@ const AppLayout = ({ children }: LayoutProps) => {
         <div className="flex-1 overflow-auto bg-gradient-to-b from-slate-800 to-cyan-800">
           <div className="flex flex-col justify-center ">
             <Typography>Posts</Typography>
-            <List sx={style} component="nav" aria-label="mailbox folders">
-              {posts ? (
-                posts.map((post, index) => (
-                  <>
-                    <ListItem alignItems="center" divider key={index}>
-                      <BasicCard topic={post.topic} result={post.result} />
-                    </ListItem>
-                    <Divider />
-                  </>
-                ))
-              ) : (
+
+            {posts ? (
+              posts.map((post, index) => (
+                <List
+                  sx={style}
+                  component="nav"
+                  aria-label="mailbox folders"
+                  key={index}
+                >
+                  <ListItem alignItems="center" divider key={index}>
+                    <BasicCard topic={post.topic} result={post.result} />
+                  </ListItem>
+                  <Divider />
+                </List>
+              ))
+            ) : (
+              <List
+                sx={style}
+                component="nav"
+                aria-label="mailbox folders"
+                key={index}
+              >
                 <ListItem alignItems="center" divider>
                   <BasicCard topic="Add a Post" result="Add a Post" />
                 </ListItem>
-              )}
-
-              <ListItem>
-                <ListItemText primary="Trash" />
-              </ListItem>
-              <Divider light />
-              <ListItem>
-                <ListItemText primary="Spam" />
-              </ListItem>
-            </List>
+              </List>
+            )}
           </div>
-          {/* <Post />
-
-          {Object.values(posts).map((post, index) => {
-            return (
-              <ul key={index}>
-                <li>
-                  <span>Topic:</span>
-                  {post.topic}
-                </li>
-                <li>
-                  <span>Post:</span>
-                  {post.result}
-                </li>
-              </ul>
-            );
-          })}*/}
         </div>
 
         <div className="bg-cyan-800">user information</div>

@@ -1,6 +1,4 @@
-import { ReactNode, ReactElement } from "react";
-import { NextPage } from "next";
-import { AppProps } from "next/app";
+import { ReactNode } from "react";
 
 export type LayoutProps = {
   children: ReactNode;

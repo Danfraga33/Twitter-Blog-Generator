@@ -5,7 +5,7 @@ import React from "react"; // eslint-disable-line
 
 function Index() {
   return (
-    <div>
+    <div className="px-10 py-1">
       <Header />
       <Hero />
       <Features />
