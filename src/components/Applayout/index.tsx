@@ -2,14 +2,14 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoins } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
-import React, { useEffect, useState } from "react"; // eslint-disable-line
+import React, { useEffect, useState, FC } from "react"; // eslint-disable-line
 import { LayoutProps } from "./types/TAppLayoutProps";
-import { Feature } from "../Sidebar/Post/_PostDescription";
-import { Post } from "../Sidebar/Post/Post";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
+import { Typography } from "@mui/material";
+import { BasicCard } from "../Sidebar/Post/Card";
 
 const AppLayout = ({ children }: LayoutProps) => {
   const [posts, setPosts] = useState([]);
@@ -71,16 +71,23 @@ const AppLayout = ({ children }: LayoutProps) => {
         </div>
         <div className="flex-1 overflow-auto bg-gradient-to-b from-slate-800 to-cyan-800">
           <div className="flex flex-col justify-center ">
-            <h1>Posts</h1>
+            <Typography>Posts</Typography>
             <List sx={style} component="nav" aria-label="mailbox folders">
-              <ListItem alignItems="center">
-                <Post />
-                {/* <ListItemText primary="Drafts" /> */}
-              </ListItem>
-              <Divider />
-              <ListItem alignItems="center" divider>
-                <ListItemText primary="Drafts" />
-              </ListItem>
+              {posts ? (
+                posts.map((post, index) => (
+                  <>
+                    <ListItem alignItems="center" divider key={index}>
+                      <BasicCard topic={post.topic} result={post.result} />
+                    </ListItem>
+                    <Divider />
+                  </>
+                ))
+              ) : (
+                <ListItem alignItems="center" divider>
+                  <BasicCard topic="Add a Post" result="Add a Post" />
+                </ListItem>
+              )}
+
               <ListItem>
                 <ListItemText primary="Trash" />
               </ListItem>
