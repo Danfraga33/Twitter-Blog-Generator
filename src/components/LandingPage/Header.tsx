@@ -1,10 +1,13 @@
-import React from "react"; // eslint-disable-lint
+import React from "react"; // eslint-disable-line
 import Image from "next/image";
-
+import { UserButton, useUser, SignedIn } from "@clerk/nextjs";
+import { getAuth } from "@clerk/nextjs/server";
 import { BeakerIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 
 function Header() {
+  const { isSignedIn, user, isLoaded } = useUser();
+  console.log(isSignedIn);
   return (
     <header className="container flex justify-between shadow-md md:shadow-none h-20 ">
       <Image
@@ -31,9 +34,18 @@ function Header() {
           {/* <div className="nav-item">Product</div> */}
           <p className="nav-item">Resouces</p>
           {/* </div> */}
-
-          <button className="secondary-button">Sign in</button>
-          <button className="primary-button">Sign up</button>
+          {!isSignedIn ? (
+            <>
+              <button className="secondary-button">
+                <Link href="/sign-in">Sign in</Link>
+              </button>
+              <button className="primary-button">
+                <Link href="/sign-up">Sign up</Link>
+              </button>
+            </>
+          ) : (
+            <UserButton />
+          )}
         </div>
       </div>
     </header>
