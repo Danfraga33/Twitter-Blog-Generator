@@ -1,13 +1,11 @@
 import React from "react"; // eslint-disable-line
 import Image from "next/image";
-import { UserButton, useUser, SignedIn } from "@clerk/nextjs";
-import { getAuth } from "@clerk/nextjs/server";
+import { useSignIn } from "@clerk/nextjs";
+
 import { BeakerIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 
 function Header() {
-  const { isSignedIn, user } = useUser();
-  console.log(user);
   return (
     <header className="container flex justify-between shadow-md md:shadow-none h-20 ">
       <Image

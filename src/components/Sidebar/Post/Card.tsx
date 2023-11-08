@@ -7,9 +7,7 @@ import Typography from "@mui/material/Typography";
 import { FormControlLabel, Switch } from "@mui/material";
 import { TCard } from "./Types/TCard";
 import { useTheme } from "@mui/material/styles";
-import { customTheme } from "../../../Theme/customTheme";
 import { TwitterShareButton, TwitterIcon } from "react-share";
-
 export const BasicCard: FC<TCard> = (props): ReactElement => {
   const { topic = "Add a Post", result = "Lorem" } = props;
   const [isPosted, setIsPosted] = useState(false);
@@ -49,22 +47,26 @@ export const BasicCard: FC<TCard> = (props): ReactElement => {
               Posted!
             </Button>
           ) : (
-            <Button
-              size="small"
-              color="primary"
-              sx={{
-                color: "#fff",
-                fontSize: "11px",
-              }}
-            >
-              Post
+            <>
               <TwitterShareButton
+                title="Hello"
                 className="shareBtn col-md-1 col-sm-1 col-xs-1"
                 url="https://twitter.com/home"
               >
-                <TwitterIcon size={32} round />
+                <Button
+                  size="small"
+                  color="primary"
+                  style={{
+                    backgroundColor: "#1DB1F2",
+                    color: "#fff",
+                    fontSize: "11px",
+                  }}
+                >
+                  Post
+                  <TwitterIcon size={32} round />
+                </Button>
               </TwitterShareButton>
-            </Button>
+            </>
           )}
         </Box>
       </CardContent>

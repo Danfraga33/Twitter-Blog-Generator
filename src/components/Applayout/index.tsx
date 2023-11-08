@@ -9,6 +9,7 @@ import ListItem from "@mui/material/ListItem";
 import Divider from "@mui/material/Divider";
 import { Typography } from "@mui/material";
 import { BasicCard } from "../Sidebar/Post/Card";
+import UserInformation from "../UserInformation";
 
 const AppLayout = ({ children }: LayoutProps) => {
   const [posts, setPosts] = useState([]);
@@ -101,7 +102,9 @@ const AppLayout = ({ children }: LayoutProps) => {
           </div>
         </div>
 
-        <div className="bg-cyan-800">user information</div>
+        <div className="bg-cyan-800">
+          <UserInformation />
+        </div>
       </div>
       <div>{children}</div>
     </div>
