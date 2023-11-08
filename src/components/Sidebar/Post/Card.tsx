@@ -8,6 +8,7 @@ import { FormControlLabel, Switch } from "@mui/material";
 import { TCard } from "./Types/TCard";
 import { useTheme } from "@mui/material/styles";
 import { customTheme } from "../../../Theme/customTheme";
+import { TwitterShareButton, TwitterIcon } from "react-share";
 
 export const BasicCard: FC<TCard> = (props): ReactElement => {
   const { topic = "Add a Post", result = "Lorem" } = props;
@@ -57,6 +58,12 @@ export const BasicCard: FC<TCard> = (props): ReactElement => {
               }}
             >
               Post
+              <TwitterShareButton
+                className="shareBtn col-md-1 col-sm-1 col-xs-1"
+                url="https://twitter.com/home"
+              >
+                <TwitterIcon size={32} round />
+              </TwitterShareButton>
             </Button>
           )}
         </Box>

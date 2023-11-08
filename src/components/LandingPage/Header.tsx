@@ -6,8 +6,8 @@ import { BeakerIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 
 function Header() {
-  const { isSignedIn, user, isLoaded } = useUser();
-  console.log(isSignedIn);
+  const { isSignedIn, user } = useUser();
+  console.log(user);
   return (
     <header className="container flex justify-between shadow-md md:shadow-none h-20 ">
       <Image
