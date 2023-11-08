@@ -8,6 +8,9 @@ const TokenTopup: NextPageWithLayout = () => {
   const handleClick = async () => {
     const response = await fetch("/api/addTokens", {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
     const result = await response.json();
     console.log(result);
@@ -17,7 +20,7 @@ const TokenTopup: NextPageWithLayout = () => {
     <div>
       <div>this is the token-topup page</div>
       <button onClick={handleClick} className="p-2 ml-5 bg-blue-500">
-        click me
+        Add Tokens
       </button>
     </div>
   );
