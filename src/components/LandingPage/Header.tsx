@@ -43,7 +43,7 @@ function Header() {
               </button>
             </>
           ) : (
-            <UserButton />
+            <UserButton afterSignOutUrl="/" afterSignInUrl="/" />
           )}
         </div>
       </div>
