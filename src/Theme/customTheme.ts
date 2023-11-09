@@ -1,4 +1,4 @@
-import { createTheme, ThemeOptions } from "@mui/material/styles";
+import { createTheme, ThemeOptions } from "@mui/material/styles"; // eslint-disable-line
 
 export const customTheme: ThemeOptions = createTheme({
   palette: {
