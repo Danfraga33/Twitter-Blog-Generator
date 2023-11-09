@@ -8,6 +8,7 @@ import { FormControlLabel, Switch } from "@mui/material";
 import { TCard } from "./Types/TCard";
 import { useTheme } from "@mui/material/styles";
 import { TwitterShareButton, TwitterIcon } from "react-share";
+import DoneAllIcon from "@mui/icons-material/DoneAll";
 
 export const BasicCard: FC<TCard> = (props): ReactElement => {
   const { topic = "Add a Post", result = "Lorem" } = props;
@@ -45,7 +46,12 @@ export const BasicCard: FC<TCard> = (props): ReactElement => {
                 backgroundColor: theme.palette.success.light,
               }}
             >
-              Posted!
+              <p className="flex items-center">
+                Posted
+                <span className="ml-1">
+                  <DoneAllIcon />
+                </span>
+              </p>
             </Button>
           ) : (
             <>
