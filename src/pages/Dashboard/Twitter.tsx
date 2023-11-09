@@ -14,6 +14,7 @@ function Twitter() {
   const [topic, setTopic] = useState("");
   const [result, setResult] = useState("");
   const [copiedText, setCopiedText] = useState(false);
+
   async function handleFetch() {
     if (topic) {
       const response = await fetch("/api/hello", {
@@ -114,6 +115,7 @@ function Twitter() {
                 {copiedText ? <DoneIcon color="primary" /> : null}
               </span>
             </div>
+
             <TextField
               fullWidth
               sx={{ width: "100%" }}
