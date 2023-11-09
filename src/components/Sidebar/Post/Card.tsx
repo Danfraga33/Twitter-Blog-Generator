@@ -8,6 +8,7 @@ import { FormControlLabel, Switch } from "@mui/material";
 import { TCard } from "./Types/TCard";
 import { useTheme } from "@mui/material/styles";
 import { TwitterShareButton, TwitterIcon } from "react-share";
+
 export const BasicCard: FC<TCard> = (props): ReactElement => {
   const { topic = "Add a Post", result = "Lorem" } = props;
   const [isPosted, setIsPosted] = useState(false);
@@ -48,8 +49,9 @@ export const BasicCard: FC<TCard> = (props): ReactElement => {
             </Button>
           ) : (
             <>
+              {" "}
               <TwitterShareButton
-                title="Hello"
+                title={result}
                 className="shareBtn col-md-1 col-sm-1 col-xs-1"
                 url="https://twitter.com/home"
               >

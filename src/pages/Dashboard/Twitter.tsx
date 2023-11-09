@@ -8,6 +8,7 @@ import SmartToyIcon from "@mui/icons-material/SmartToy";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import DoneIcon from "@mui/icons-material/Done";
+import { TwitterShareButton } from "react-share";
 
 function Twitter() {
   const [topic, setTopic] = useState("");
@@ -58,7 +59,7 @@ function Twitter() {
         p={4}
         m={0}
         sx={{
-          background: customTheme.palette.background.paper,
+          background: customTheme.palette?.background?.paper,
           minHeight: "100vh",
           Width: "100vw",
           xs: 2,
@@ -79,7 +80,6 @@ function Twitter() {
             }}
             required
           />
-
           {/* <TextField
             id="Keywords"
             name="Keywords"
@@ -99,7 +99,6 @@ function Twitter() {
           >
             Generate
           </Button>
-
           <div className="mt-8">
             <div className="flex gap-2 py-2">
               <h2>Results</h2>
@@ -123,7 +122,6 @@ function Twitter() {
               value={result}
             />
           </div>
-
           <Button
             variant="outlined"
             size="large"
@@ -133,6 +131,14 @@ function Twitter() {
           >
             Save
           </Button>
+
+          <TwitterShareButton
+            url={"https://twitter.com"}
+            title={result}
+            disabled={!result}
+          >
+            Share on Twitter
+          </TwitterShareButton>
         </Stack>
       </Grid>
     </ThemeProvider>
