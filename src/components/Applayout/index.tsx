@@ -106,7 +106,10 @@ const AppLayout = ({ children }: LayoutProps) => {
           <UserInformation />
         </div>
       </div>
-      <div>{children}</div>
+      <div>
+        {children}
+        {/* Dont Touch */}
+      </div>
     </div>
   );
 };
