@@ -27,11 +27,11 @@ function Header() {
         <BeakerIcon className="h-10 md:hidden" />
         <div className="hidden md:flex items-center space-x-3 lg:space-x-8">
           {/* <div className="hidden max-w-xl md:grid gap-4 grid-cols-4 text-right"> */}
-          <Link href="../Dashboard/Twitter" className="nav-item">
+          <Link href="../Dashboard/Twitter" className="text-xl nav-item">
             Dashboard
           </Link>
           {/* <div className="nav-item">Product</div> */}
-          <p className="nav-item">Resouces</p>
+          <p className="nav-item text-xl">Resouces</p>
           {/* </div> */}
           {!isSignedIn ? (
             <>
