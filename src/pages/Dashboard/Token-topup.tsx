@@ -3,6 +3,9 @@ import React from "react"; // eslint-disable-line
 import { NextPageWithLayout } from "../_app";
 import { customTheme } from "../../Theme/customTheme";
 import { ThemeProvider, CssBaseline } from "@mui/material";
+import { Button } from "@mui/material";
+import Stack from "@mui/material/Stack";
+import TollIcon from "@mui/icons-material/Toll";
 
 const TokenTopup: NextPageWithLayout = () => {
   const handleClick = async () => {
@@ -17,11 +20,31 @@ const TokenTopup: NextPageWithLayout = () => {
     window.location.href = result.session.url;
   };
   return (
-    <div>
-      <div>this is the token-topup page</div>
-      <button onClick={handleClick} className="p-2 ml-5 bg-blue-500">
-        Add Tokens
-      </button>
+    <div className="flex justify-center items-center h-full bg-[#151515]">
+      <Stack>
+        <div
+          style={{
+            fontSize: "12rem",
+            fontWeight: "bold",
+            textAlign: "center",
+          }}
+        >
+          <span className="text-green-500">0</span>
+          {""}
+          <span style={{ fontSize: "3rem" }}>TOKENS</span>
+        </div>
+        <Button
+          onClick={handleClick}
+          className="bg-gray-200 flex justify-center"
+          style={{
+            color: "rgb(76, 175, 80)",
+            fontWeight: "bold",
+            fontSize: "1rem",
+          }}
+        >
+          Add 10 Tokens <TollIcon className="ml-1" />
+        </Button>
+      </Stack>
     </div>
   );
 };
