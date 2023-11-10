@@ -2,7 +2,7 @@ import { BsFillChatDotsFill, BsPencilSquare } from "react-icons/bs";
 import { AiOutlineAreaChart } from "react-icons/ai";
 
 import { FaRobot } from "react-icons/fa";
-import React, { FC, ReactElement } from "react"; // eslint-disable-lin
+import React, { FC, ReactElement } from "react"; // eslint-disable-line
 import FeatureItem from "./FeatureItem";
 
 const Features: FC = (): ReactElement => {
