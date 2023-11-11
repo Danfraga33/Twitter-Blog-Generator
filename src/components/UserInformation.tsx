@@ -7,8 +7,8 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 function UserInformation() {
   const theme = useTheme(); // eslint-disable-line
   const { user } = useUser();
+  // console.log(user);
 
-  console.log(user);
   return (
     <div className="p-1">
       <Paper className="px-3.5 py-1.5 bg-gradient-to-r from-white to-indigo-300 ">

@@ -6,7 +6,34 @@ import Link from "next/link";
 
 function Header() {
   const { isSignedIn, user } = useUser();
-  console.log(user);
+
+  if (isSignedIn) {
+    const storeUserData = async () => {
+      try {
+        const response = await fetch("/api/userData", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        });
+
+        const result = await response.json();
+        console.log(result);
+
+        if (response.ok) {
+          console.log("User data stored successfully");
+        } else {
+          console.error("Error storing user data:", result.error);
+        }
+      } catch (error) {
+        console.error("Error storing user data:", error);
+      }
+    };
+    storeUserData();
+  }
+
+  // console.log(user);
   return (
     <header className="container flex justify-between shadow-md md:shadow-none h-20 ">
       <Image
