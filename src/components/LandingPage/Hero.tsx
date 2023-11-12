@@ -7,19 +7,6 @@ import Image from "next/image";
 import { Button } from "@mui/material";
 
 const Hero: NextPage = () => {
-  const handleClick = async () => {
-    const response = await fetch("/api/webhooks", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const result = await response.json();
-    console.log(result);
-  };
-
-  // const theme = useTheme();
-  // console.log(theme);
   return (
     <main className="container mt-4 md:flex flex-row-reverse justify-evenly items-center">
       <div className="md:max-w-[50%]">
