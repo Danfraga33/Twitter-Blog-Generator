@@ -9,11 +9,14 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import DoneIcon from "@mui/icons-material/Done";
 import { TwitterShareButton } from "react-share";
+import { useUser } from "@clerk/nextjs";
 
 function Twitter() {
   const [topic, setTopic] = useState("");
   const [result, setResult] = useState("");
   const [copiedText, setCopiedText] = useState(false);
+
+  const { user } = useUser();
 
   async function handleFetch() {
     if (topic) {
@@ -33,7 +36,10 @@ function Twitter() {
     }
   }
 
-  const dataForSaving = {
+  const dataToBeInserted = {
+    userid: user?.id,
+    firstName: user?.firstName,
+    lastName: user?.lastName,
     topic: topic,
     result: result,
   };
@@ -44,11 +50,10 @@ function Twitter() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(dataForSaving),
+      body: JSON.stringify(dataToBeInserted),
     });
     if (response.ok) {
       const data = await response.json();
-      console.log(data);
     }
   }
 
@@ -109,9 +114,9 @@ function Twitter() {
                   text={result}
                   onCopy={() => setCopiedText(true)}
                 >
-                  <button>
+                  <Button>
                     {result && <ContentCopyIcon fontSize="small" />}
-                  </button>
+                  </Button>
                 </CopyToClipboard>
                 {copiedText ? <DoneIcon color="primary" /> : null}
               </span>
