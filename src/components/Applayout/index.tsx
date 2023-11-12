@@ -7,7 +7,7 @@ import { LayoutProps } from "./types/TAppLayoutProps";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Divider from "@mui/material/Divider";
-import { Typography } from "@mui/material";
+import { Post } from "./types/TState";
 import { BasicCard } from "../Sidebar/Post/Card";
 import UserInformation from "../UserInformation";
 import { Roboto } from "next/font/google";
@@ -15,7 +15,7 @@ import { Roboto } from "next/font/google";
 const roboto = Roboto({ weight: "400", subsets: ["latin"] });
 
 const AppLayout = ({ children }: LayoutProps) => {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<Post[]>([]);
 
   async function getData() {
     const response = await fetch("/api/DB", {
@@ -92,12 +92,7 @@ const AppLayout = ({ children }: LayoutProps) => {
                   </List>
                 ))
               ) : (
-                <List
-                  sx={style}
-                  component="nav"
-                  aria-label="mailbox folders"
-                  key={index}
-                >
+                <List sx={style} component="nav" aria-label="mailbox folders">
                   <ListItem alignItems="center" divider>
                     <BasicCard topic="Add a Post" result="Add a Post" />
                   </ListItem>
