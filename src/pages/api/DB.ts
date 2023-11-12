@@ -7,18 +7,17 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const { userId } = getAuth(req);
-
   await connectDB();
   if (req.method === "POST") {
     try {
-      const { firstName, id, lastName, topic, result } = req.body;
+      const { firstName, id, lastName, topic, keywords, result } = req.body;
       const newTweet = new Tweet({
         id,
         firstName,
         lastName,
-        topic: topic,
-        result: result,
+        topic,
+        keywords,
+        result,
       });
 
       const savedTweet = await newTweet.save();
@@ -33,7 +32,6 @@ export default async function handler(
     const { userId } = getAuth(req);
     try {
       const documents = Tweet.find({ id: userId });
-      console.log("Saved Tweet:", documents);
 
       res.status(200).json(documents);
     } catch (error) {

@@ -11,9 +11,11 @@ import { TwitterShareButton, TwitterIcon } from "react-share";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 
 export const BasicCard: FC<TCard> = (props): ReactElement => {
-  const { topic = "Add a Post", result = "Lorem" } = props;
+  const { topic = "Add a Post", keywords, result = "Lorem" } = props;
   const [isPosted, setIsPosted] = useState(false);
   const theme = useTheme();
+
+  console.log(keywords);
 
   return (
     <Card sx={{ backgroundColor: "#a2a2c2", maxWidth: 300 }}>
@@ -22,7 +24,7 @@ export const BasicCard: FC<TCard> = (props): ReactElement => {
           Topic: {topic}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          Keywords: Keywords
+          Keywords: {keywords}
         </Typography>
         <Typography variant="body2">{result}</Typography>
         <Box display="flex" justifyContent="space-between" alignItems="center">

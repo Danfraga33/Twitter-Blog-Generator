@@ -8,6 +8,7 @@ const tweetSchema = new Schema({
   lastName: String,
   email: String,
   topic: String,
+  keywords: String,
   result: String,
 });
 

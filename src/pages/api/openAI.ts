@@ -8,7 +8,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const { body } = req;
+  const { topic, keywords } = req.body;
 
   const completion = await openai.chat.completions.create({
     messages: [
@@ -18,7 +18,7 @@ export default async function handler(
       },
       {
         role: "user",
-        content: `Give me a twitter post about ${body} in first person. The post should be under 260 characters. Do NOT surrond the response in quotation marks.
+        content: `Give me a twitter post about ${topic} in first person. The post should include these  keywords: ${keywords}. The post should be under 260 characters. Do NOT surrond the response in quotation marks.
 		  `,
       },
     ],

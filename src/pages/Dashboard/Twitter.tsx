@@ -13,6 +13,7 @@ import { useUser } from "@clerk/nextjs";
 
 function Twitter() {
   const [topic, setTopic] = useState("");
+  const [keywords, setKeywords] = useState("sasd");
   const [result, setResult] = useState("");
   const [copiedText, setCopiedText] = useState(false);
 
@@ -20,12 +21,17 @@ function Twitter() {
 
   async function handleFetch() {
     if (topic) {
+      const requestBody = {
+        topic: topic,
+        keywords: keywords, // assuming keywords is a variable holding the relevant data
+      };
+
       const response = await fetch("/api/openAI", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(topic),
+        body: JSON.stringify(requestBody),
       });
       if (response.ok) {
         const json = await response.json();
@@ -42,7 +48,10 @@ function Twitter() {
     lastName: user?.lastName,
     topic: topic,
     result: result,
+    keywords: keywords,
   };
+
+  console.log(dataToBeInserted);
 
   async function MongoDB() {
     const response = await fetch("/api/DB", {
@@ -90,16 +99,20 @@ function Twitter() {
             }}
             required
           />
-          {/* <TextField
+          <TextField
             id="Keywords"
             name="Keywords"
             label="Keywords"
             fullWidth
             size="small"
             multiline
-            rows={4}
+            rows={2}
+            value={keywords}
+            onChange={(e) => {
+              setKeywords(e.target.value);
+            }}
             sx={{ width: "100%" }}
-          /> */}
+          />
           <Button
             variant="outlined"
             startIcon={<SmartToyIcon />}

@@ -16,7 +16,7 @@ const roboto = Roboto({ weight: "400", subsets: ["latin"] });
 
 const AppLayout = ({ children }: LayoutProps) => {
   const [posts, setPosts] = useState<Post[]>([]);
-  // console.log(posts);
+  console.log(posts);
   async function getData() {
     const response = await fetch("/api/DB", {
       method: "GET",
@@ -86,7 +86,11 @@ const AppLayout = ({ children }: LayoutProps) => {
                     key={index}
                   >
                     <ListItem alignItems="center" divider key={index}>
-                      <BasicCard topic={post.topic} result={post.result} />
+                      <BasicCard
+                        topic={post.topic}
+                        keywords={post.keywords}
+                        result={post.result}
+                      />
                     </ListItem>
                     <Divider />
                   </List>
@@ -94,7 +98,11 @@ const AppLayout = ({ children }: LayoutProps) => {
               ) : (
                 <List sx={style} component="nav" aria-label="mailbox folders">
                   <ListItem alignItems="center" divider>
-                    <BasicCard topic="Add a Post" result="Add a Post" />
+                    <BasicCard
+                      topic="Add a Post"
+                      result="Add a Post"
+                      keywords="None"
+                    />
                   </ListItem>
                 </List>
               )}
