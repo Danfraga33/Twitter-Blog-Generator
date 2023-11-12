@@ -62,7 +62,7 @@ function Twitter() {
       body: JSON.stringify(dataToBeInserted),
     });
     if (response.ok) {
-      const data = await response.json();
+      const data = await response.json(); //eslint-disable-line
       console.log("Tweet stored successfully");
     } else {
       console.error("Error storing Post:");
