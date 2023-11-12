@@ -13,7 +13,7 @@ import { useUser } from "@clerk/nextjs";
 
 function Twitter() {
   const [topic, setTopic] = useState("");
-  const [keywords, setKeywords] = useState("sasd");
+  const [keywords, setKeywords] = useState("");
   const [result, setResult] = useState("");
   const [copiedText, setCopiedText] = useState(false);
 
