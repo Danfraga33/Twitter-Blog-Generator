@@ -6,31 +6,24 @@ export default async function handler(req: NextRequest, res: NextResponse) {
   await connectDB();
   if (req.method === "POST") {
     try {
-      //Data going in
-
       const { userid, firstName, lastName, fullName, emailaddress } = req.body;
+      if (!userid) {
+      }
+
       const user = {
         userid,
         firstName,
         lastName,
         fullName,
         emailaddress,
+        tokens: 20,
       };
-
-      // const newUser = new UserSchema(user);
-      // const savedUser = await newUser.save();
       const updatedUser = await User.findOneAndUpdate(
         { userid },
         {
-          $set: {
-            userid,
-            firstName,
-            lastName,
-            fullName,
-            emailaddress,
-          },
+          $set: user,
         },
-        { upsert: true, new: true }, // Creates a new document if it doesn't exist
+        { upsert: true, new: true },
       );
 
       res
