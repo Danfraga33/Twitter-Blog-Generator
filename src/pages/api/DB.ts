@@ -1,30 +1,27 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import connectDB from "../../components/Utils/connectMongo";
 import Tweet from "../../components/models/TwitterSchema";
-// import { getAuth } from "@clerk/nextjs/server";
+import { getAuth } from "@clerk/nextjs/server";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  // const { userId } = getAuth(req);
-  // console.log(userId);
+  const { userId } = getAuth(req);
+
   await connectDB();
   if (req.method === "POST") {
-    const { topic, result } = req.body;
-    console.log("Before Save:", {
-      // Clerk
-      topic: topic, // Front End
-      result: result, // Front End
-    });
     try {
+      const { firstName, id, lastName, topic, result } = req.body;
       const newTweet = new Tweet({
+        id,
+        firstName,
+        lastName,
         topic: topic,
         result: result,
       });
 
       const savedTweet = await newTweet.save();
-      console.log("Saved Tweet:", savedTweet);
 
       res.status(200).json(savedTweet);
     } catch (error) {
@@ -33,6 +30,7 @@ export default async function handler(
   }
 
   if (req.method === "GET") {
+    const { userId } = getAuth(req);
     try {
       const documents = Tweet.find({ id: userId });
       console.log("Saved Tweet:", documents);

@@ -16,7 +16,7 @@ const roboto = Roboto({ weight: "400", subsets: ["latin"] });
 
 const AppLayout = ({ children }: LayoutProps) => {
   const [posts, setPosts] = useState<Post[]>([]);
-
+  // console.log(posts);
   async function getData() {
     const response = await fetch("/api/DB", {
       method: "GET",

@@ -7,7 +7,6 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 function UserInformation() {
   const theme = useTheme(); // eslint-disable-line
   const { user } = useUser();
-  // console.log(user);
 
   return (
     <div className="p-1">

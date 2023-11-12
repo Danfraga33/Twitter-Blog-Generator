@@ -1,10 +1,5 @@
 import mongoose from "mongoose";
 
-// const dbOptions: ConnectOptions = {
-//   //   useNewUrlParser: true,
-//   //   useUnifiedTopology: true,
-// };
-
 export default async function connectDB() {
   try {
     await mongoose.connect(
