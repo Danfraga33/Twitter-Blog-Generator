@@ -27,7 +27,7 @@ export default async function handler(req: NextRequest, res: NextResponse) {
       const options = { upsert: true, new: true };
 
       const updatedUser = await Tweet.findOneAndUpdate(filter, update, options);
-      console.log("Saved Tweet:", updatedUser);
+      // console.log("Saved Tweet:", updatedUser);
 
       res
         .status(200)

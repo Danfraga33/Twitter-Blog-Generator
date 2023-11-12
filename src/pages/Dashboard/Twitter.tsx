@@ -17,7 +17,7 @@ function Twitter() {
 
   async function handleFetch() {
     if (topic) {
-      const response = await fetch("/api/hello", {
+      const response = await fetch("/api/openAI", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
