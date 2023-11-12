@@ -57,6 +57,7 @@ function Twitter() {
       console.log("Tweet stored successfully");
     } else {
       console.error("Error storing Post:");
+    }
   }
 
   return (
