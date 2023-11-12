@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const tweetSchema = new Schema({
-  id: String,
+  userid: String,
   firstName: String,
   lastName: String,
   email: String,
