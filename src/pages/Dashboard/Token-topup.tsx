@@ -1,5 +1,5 @@
 import AppLayout from "../../components/Applayout";
-import React from "react"; // eslint-disable-line
+import React, { useState, useEffect } from "react"; // eslint-disable-line
 import { NextPageWithLayout } from "../_app";
 import { customTheme } from "../../Theme/customTheme";
 import { ThemeProvider, CssBaseline } from "@mui/material";
@@ -8,6 +8,7 @@ import Stack from "@mui/material/Stack";
 import TollIcon from "@mui/icons-material/Toll";
 
 const TokenTopup: NextPageWithLayout = () => {
+  const [tokens, setTokens] = useState(0);
   const handleClick = async () => {
     const response = await fetch("/api/addTokens", {
       method: "POST",
@@ -19,6 +20,26 @@ const TokenTopup: NextPageWithLayout = () => {
 
     window.location.href = result.session.url;
   };
+
+  useEffect(() => {
+    async function getUserData() {
+      try {
+        const response = await fetch("/api/UserData/getUserData", {
+          method: "GET",
+        });
+        if (response.ok) {
+          const user = await response.json();
+          setTokens(user[0].tokens);
+        } else {
+          console.log("NOPE");
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    }
+
+    getUserData();
+  }, []);
   return (
     <div className="flex justify-center items-center h-full bg-[#151515]">
       <Stack>
@@ -29,7 +50,7 @@ const TokenTopup: NextPageWithLayout = () => {
             textAlign: "center",
           }}
         >
-          <span className="text-green-500">0</span>
+          <span className="text-green-500">{tokens}</span>
           {""}
           <span style={{ fontSize: "3rem" }}>TOKENS</span>
         </div>

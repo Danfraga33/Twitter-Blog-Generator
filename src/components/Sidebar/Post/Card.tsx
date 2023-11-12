@@ -15,8 +15,6 @@ export const BasicCard: FC<TCard> = (props): ReactElement => {
   const [isPosted, setIsPosted] = useState(false);
   const theme = useTheme();
 
-  console.log(keywords);
-
   return (
     <Card sx={{ backgroundColor: "#a2a2c2", maxWidth: 300 }}>
       <CardContent>

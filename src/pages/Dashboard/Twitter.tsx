@@ -26,7 +26,7 @@ function Twitter() {
         keywords: keywords, // assuming keywords is a variable holding the relevant data
       };
 
-      const response = await fetch("/api/openAI", {
+      const response = await fetch("/api/openAITwitter", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -49,10 +49,11 @@ function Twitter() {
     topic: topic,
     result: result,
     keywords: keywords,
+    tokens: 10,
   };
 
   async function MongoDB() {
-    const response = await fetch("/api/DB", {
+    const response = await fetch("/api/PostData/DB", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

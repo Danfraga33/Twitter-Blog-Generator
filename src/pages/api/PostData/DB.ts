@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import connectDB from "../../components/Utils/connectMongo";
-import Tweet from "../../components/models/TwitterSchema";
+import connectDB from "../../../components/Utils/connectMongo";
+import Tweet from "../../../components/models/TwitterSchema";
 import { getAuth } from "@clerk/nextjs/server";
 
 export default async function handler(
@@ -10,9 +10,10 @@ export default async function handler(
   await connectDB();
   if (req.method === "POST") {
     try {
-      const { firstName, id, lastName, topic, keywords, result } = req.body;
+      const { firstName, userid, lastName, topic, keywords, result } = req.body;
+
       const newTweet = new Tweet({
-        id,
+        userid,
         firstName,
         lastName,
         topic,
@@ -30,16 +31,18 @@ export default async function handler(
 
   if (req.method === "GET") {
     const { userId } = getAuth(req);
+    const userid = userId;
+    // console.log(userId);
     try {
-      const documents = Tweet.find({ id: userId });
+      const documents = await Tweet.find({ userid: userid });
 
       res.status(200).json(documents);
     } catch (error) {
       console.error(error);
     }
   }
-  if (req.method === "GET") {
-    const tweetData = await Tweet.find();
-    res.status(200).json(tweetData);
-  }
+  // if (req.method === "GET") {
+  //   const tweetData = await Tweet.find();
+  //   res.status(200).json(tweetData);
+  // }
 }

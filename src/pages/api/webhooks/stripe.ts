@@ -1,6 +1,6 @@
 // import { stripeInit } from "stripe";
 // import Cors from "micro-cors";
-// import verifyStripe from "@web";
+// import verifyStripe from "@webeducation/next-verify-stripe";
 // const cors = Cors({
 //   allowMethods: ["POST", "HEAD"],
 // });

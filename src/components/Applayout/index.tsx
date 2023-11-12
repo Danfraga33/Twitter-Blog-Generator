@@ -16,18 +16,39 @@ const roboto = Roboto({ weight: "400", subsets: ["latin"] });
 
 const AppLayout = ({ children }: LayoutProps) => {
   const [posts, setPosts] = useState<Post[]>([]);
-  console.log(posts);
-  async function getData() {
-    const response = await fetch("/api/DB", {
-      method: "GET",
-    });
-    if (response.ok) {
-      const json = await response.json();
-      setPosts(json);
-    }
-  }
+  const [tokens, setTokens] = useState(0);
+
   useEffect(() => {
+    async function getData() {
+      try {
+        const response = await fetch("/api/PostData/DB", { method: "GET" });
+        if (response.ok) {
+          const json = await response.json();
+          setPosts(json);
+        }
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+      }
+    }
+
+    async function getUserData() {
+      try {
+        const response = await fetch("/api/UserData/getUserData", {
+          method: "GET",
+        });
+        if (response.ok) {
+          const user = await response.json();
+          setTokens(user[0].tokens);
+        } else {
+          console.log("NOPE");
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    }
+
     getData();
+    getUserData();
   }, []);
 
   const style = {
@@ -58,19 +79,20 @@ const AppLayout = ({ children }: LayoutProps) => {
               Twitter
             </Link>
             {/* <div className="py-2">
-            <Link
-            href="/Dashboard/twitter "
-            className="bg-green-500 tracking-wider w-full text-center text-white font-bold uppercase px-4 py-2 rounded-md hover:bg-green-600 transition-colors block"
-            >
-            Blog
-            </Link>
-          </div> */}
+              <Link
+                href="/Dashboard/Blog"
+                className="bg-green-500 tracking-wider w-full text-center text-white font-bold uppercase px-4 py-2 rounded-md hover:bg-green-600 transition-colors block"
+              >
+                Blog
+              </Link>
+            </div> */}
             <Link
               href="/Dashboard/Token-topup"
               className="block mt-2 text-center"
             >
-              <FontAwesomeIcon icon={faCoins} className="text-yellow-500" />0
-              <span className="pl-1">Tokens Available.</span>
+              <FontAwesomeIcon icon={faCoins} className="text-yellow-500 " />
+
+              <span className="pl-1">{tokens} Tokens Available</span>
             </Link>
           </div>
           <div className="flex-1 overflow-auto bg-gradient-to-b from-[#001F3F] to-[#006D96] ">
@@ -88,7 +110,7 @@ const AppLayout = ({ children }: LayoutProps) => {
                     <ListItem alignItems="center" divider key={index}>
                       <BasicCard
                         topic={post.topic}
-                        keywords={post.keywords}
+                        keywords={post?.keywords}
                         result={post.result}
                       />
                     </ListItem>
