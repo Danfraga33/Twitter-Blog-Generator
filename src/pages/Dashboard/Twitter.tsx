@@ -51,8 +51,6 @@ function Twitter() {
     keywords: keywords,
   };
 
-  console.log(dataToBeInserted);
-
   async function MongoDB() {
     const response = await fetch("/api/DB", {
       method: "POST",
