@@ -1,5 +1,4 @@
 import stripeInit from "stripe";
-import connectDB from "../../components/Utils/connectMongo";
 
 const stripe = stripeInit(process.env.STRIPE_SECRET_KEY);
 
@@ -9,8 +8,6 @@ export default async function handler(req, res) {
       price: process.env.STRIPE_PRODUCT_PRICE_ID,
       quantity: 1,
     },
-
-    await connectDB(),
   ];
   const protocol =
     process.env.NODE_ENV === "development" ? "http://" : "https://";
