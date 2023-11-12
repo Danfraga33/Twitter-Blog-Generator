@@ -7,6 +7,14 @@ import Link from "next/link";
 function Header() {
   const { isSignedIn, user } = useUser();
 
+  const userDataToSaved = {
+    userid: user?.id,
+    firstName: user?.firstName,
+    lastName: user?.lastName,
+    fullName: user?.fullName,
+    emailaddress: user?.primaryEmailAddress?.emailAddress,
+  };
+
   if (isSignedIn) {
     const storeUserData = async () => {
       try {
@@ -15,11 +23,10 @@ function Header() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(user),
+          body: JSON.stringify(userDataToSaved),
         });
 
         const result = await response.json();
-        console.log(result);
 
         if (response.ok) {
           console.log("User data stored successfully");
@@ -33,7 +40,6 @@ function Header() {
     storeUserData();
   }
 
-  // console.log(user);
   return (
     <header className="container flex justify-between shadow-md md:shadow-none h-20 ">
       <Image
@@ -70,7 +76,7 @@ function Header() {
               </button>
             </>
           ) : (
-            <UserButton afterSignOutUrl="/" afterSignInUrl="/" />
+            <UserButton afterSignOutUrl="/" />
           )}
         </div>
       </div>

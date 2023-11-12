@@ -1,40 +1,46 @@
 import type { NextRequest, NextResponse } from "next/server";
 import connectDB from "../../components/Utils/connectMongo";
-import Tweet from "../../components/models/TwitterSchema";
+import User from "../../components/models/UserSchema";
 
-//////////////////// CHANGE TO UPSERT!!! /////////////////////////////////
 export default async function handler(req: NextRequest, res: NextResponse) {
   await connectDB();
   if (req.method === "POST") {
     try {
-      const {
-        id,
-        firstName,
-        lastName,
-        primaryEmailAddress: { emailAddress },
-      } = req.body;
       //Data going in
+
+      const { userid, firstName, lastName, fullName, emailaddress } = req.body;
       const user = {
-        id,
+        userid,
         firstName,
         lastName,
-        email: emailAddress,
+        fullName,
+        emailaddress,
       };
-      const newUser = new Tweet(user);
 
-      const filter = { id };
-      const update = { $set: user };
-      const options = { upsert: true, new: true };
-
-      const updatedUser = await Tweet.findOneAndUpdate(filter, update, options);
-      // console.log("Saved Tweet:", updatedUser);
+      // const newUser = new UserSchema(user);
+      // const savedUser = await newUser.save();
+      const updatedUser = await User.findOneAndUpdate(
+        { userid },
+        {
+          $set: {
+            userid,
+            firstName,
+            lastName,
+            fullName,
+            emailaddress,
+          },
+        },
+        { upsert: true, new: true }, // Creates a new document if it doesn't exist
+      );
 
       res
         .status(200)
-        .json({ message: "User data stored successfully", data: newUser });
+        .json({ message: "User data stored successfully", data: updatedUser });
     } catch (error) {
       console.error("Error storing user data:", error);
-      res.status(500).json({ error: "Internal Server Error" });
+      res
+        .status(500)
+        .json({ error: "Internal Server Error", details: error.message });
     }
   } else {
     res.status(405).json({ error: "Method Not Allowed" });
