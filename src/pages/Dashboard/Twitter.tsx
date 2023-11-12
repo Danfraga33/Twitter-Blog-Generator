@@ -54,7 +54,9 @@ function Twitter() {
     });
     if (response.ok) {
       const data = await response.json();
-    }
+      console.log("Tweet stored successfully");
+    } else {
+      console.error("Error storing Post:");
   }
 
   return (
