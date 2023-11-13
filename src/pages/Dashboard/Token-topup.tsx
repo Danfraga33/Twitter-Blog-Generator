@@ -6,9 +6,13 @@ import { ThemeProvider, CssBaseline } from "@mui/material";
 import { Button } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import TollIcon from "@mui/icons-material/Toll";
+import { useUser } from "@clerk/nextjs";
 
 const TokenTopup: NextPageWithLayout = () => {
   const [tokens, setTokens] = useState(0);
+
+  const user = useUser();
+
   const handleClick = async () => {
     const response = await fetch("/api/addTokens", {
       method: "POST",
@@ -16,7 +20,9 @@ const TokenTopup: NextPageWithLayout = () => {
         "Content-Type": "application/json",
       },
     });
+
     const result = await response.json();
+    console.log(result);
 
     window.location.href = result.session.url;
   };

@@ -1,10 +1,12 @@
 import stripeInit from "stripe";
 import { getAuth } from "@clerk/nextjs/server";
+import connectDB from "../../components/Utils/connectMongo";
+import UserSchema from "../../components/models/UserSchema";
 
 const stripe = stripeInit(process.env.STRIPE_SECRET_KEY);
-const { userId } = getAuth(req);
-const userid = userId;
+
 export default async function handler(req, res) {
+  const { userId } = getAuth(req);
   const lineItems = [
     {
       price: process.env.STRIPE_PRODUCT_PRICE_ID,
