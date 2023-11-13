@@ -3,12 +3,36 @@ import type { NextApiRequest, NextApiResponse } from "next";
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
+import { getAuth } from "@clerk/nextjs/server";
+import UserSchema from "../../components/models/UserSchema";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
+  //Check if user has tokens
+  const { userId } = getAuth(req);
   const { topic, keywords } = req.body;
+  const userProfile = await UserSchema.find({
+    userid: userId,
+  });
+  console.log(userProfile[0].tokens);
+
+  if (!userProfile[0]?.tokens) {
+    res.status(403).json({ message: "No more tokens" });
+  }
+  //////////////////////////
+  /////////// Reduce tokens by one everytime a user generates a tweet
+  await UserSchema.updateOne(
+    {
+      userid: userId,
+    },
+    {
+      $inc: {
+        tokens: -1,
+      },
+    },
+  );
 
   const completion = await openai.chat.completions.create({
     messages: [
