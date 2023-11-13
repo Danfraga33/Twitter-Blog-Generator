@@ -1,17 +1,12 @@
 import AppLayout from "../../components/Applayout";
-import React, { useState, useEffect } from "react"; // eslint-disable-line
+import React, { useState, useEffect, ReactElement } from "react"; // eslint-disable-line
 import { NextPageWithLayout } from "../_app";
-import { customTheme } from "../../Theme/customTheme";
-import { ThemeProvider, CssBaseline } from "@mui/material";
 import { Button } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import TollIcon from "@mui/icons-material/Toll";
-import { useUser } from "@clerk/nextjs";
 
 const TokenTopup: NextPageWithLayout = () => {
   const [tokens, setTokens] = useState(0);
-
-  const user = useUser();
 
   const handleClick = async () => {
     const response = await fetch("/api/addTokens", {
@@ -58,7 +53,9 @@ const TokenTopup: NextPageWithLayout = () => {
         >
           <span className="text-green-500">{tokens}</span>
           {""}
-          <span style={{ fontSize: "3rem" }}>TOKENS</span>
+          <span className="text-white" style={{ fontSize: "3rem" }}>
+            TOKENS
+          </span>
         </div>
         <Button
           onClick={handleClick}
@@ -76,14 +73,11 @@ const TokenTopup: NextPageWithLayout = () => {
   );
 };
 
-TokenTopup.getLayout = function getLayout(page) {
+TokenTopup.getLayout = function getLayout(page: ReactElement) {
   return (
-    <ThemeProvider theme={customTheme}>
-      <CssBaseline />
-      <div>
-        <AppLayout>{page}</AppLayout>
-      </div>
-    </ThemeProvider>
+    <div>
+      <AppLayout>{page}</AppLayout>
+    </div>
   );
 };
 

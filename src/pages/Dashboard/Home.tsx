@@ -15,9 +15,7 @@ const Home: NextPageWithLayout = () => {
       },
       body: JSON.stringify(topic),
     });
-    if (response.ok) {
-      const json = await response.json();
-    } else {
+    if (!response.ok) {
       console.error("Error:", response.statusText);
     }
   }

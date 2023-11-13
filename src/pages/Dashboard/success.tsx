@@ -1,8 +1,6 @@
 import AppLayout from "../../components/Applayout";
-import React from "react"; // eslint-disable-line
+import React, { ReactElement } from "react"; // eslint-disable-line
 import { NextPageWithLayout } from "../_app";
-import { customTheme } from "../../Theme/customTheme";
-import { ThemeProvider, CssBaseline } from "@mui/material";
 import DownloadDoneIcon from "@mui/icons-material/DownloadDone";
 
 const Success: NextPageWithLayout = () => {
@@ -24,14 +22,11 @@ const Success: NextPageWithLayout = () => {
   );
 };
 
-Success.getLayout = function getLayout(page) {
+Success.getLayout = function getLayout(page: ReactElement) {
   return (
-    <ThemeProvider theme={customTheme}>
-      <CssBaseline />
-      <div>
-        <AppLayout>{page}</AppLayout>
-      </div>
-    </ThemeProvider>
+    <div>
+      <AppLayout>{page}</AppLayout>
+    </div>
   );
 };
 
