@@ -1,7 +1,6 @@
 import type { NextRequest, NextResponse } from "next/server";
 import connectDB from "../../../components/Utils/connectMongo";
 import User from "../../../components/models/UserSchema";
-import { getAuth } from "@clerk/nextjs/server";
 
 export default async function handler(req: NextRequest, res: NextResponse) {
   await connectDB();
@@ -9,6 +8,9 @@ export default async function handler(req: NextRequest, res: NextResponse) {
     try {
       const { userid, firstName, lastName, fullName, emailaddress } = req.body;
       if (!userid) {
+        return res
+          .status(400)
+          .json({ error: "Validation Error", details: "userid is required." });
       }
 
       const user = {

@@ -1,8 +1,7 @@
-import React, { FC } from "react"; // eslint-disable-lint
-import { IconType } from "react-icons/lib";
+import React, { FC, ReactNode } from "react"; // eslint-disable-line
 
 type FeatureItemProps = {
-  Icon: IconType;
+  Icon: ReactNode;
   iconBgColor: string;
   title: string;
   description: string;
