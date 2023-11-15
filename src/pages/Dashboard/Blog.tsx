@@ -6,12 +6,9 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
 
-import { useUser } from "@clerk/nextjs";
 import { NextPageWithLayout } from "../_app";
 
 const Blog: NextPageWithLayout = () => {
-  const { user } = useUser();
-  console.log(user);
   return (
     <ThemeProvider theme={customTheme}>
       <CssBaseline />

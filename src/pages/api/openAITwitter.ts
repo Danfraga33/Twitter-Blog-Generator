@@ -16,7 +16,6 @@ export default async function handler(
   const userProfile = await UserSchema.find({
     userid: userId,
   });
-  console.log(userProfile[0].tokens);
 
   if (!userProfile[0]?.tokens) {
     res.status(403).json({ message: "No more tokens" });

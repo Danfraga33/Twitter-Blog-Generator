@@ -15,8 +15,6 @@ function Header() {
     emailaddress: user?.primaryEmailAddress?.emailAddress,
   };
 
-  console.log(userDataToSaved.emailaddress);
-
   if (isSignedIn) {
     const storeUserData = async () => {
       try {
@@ -29,6 +27,7 @@ function Header() {
         });
 
         const result = await response.json();
+        console.log(result);
 
         if (response.ok) {
           console.log("User data stored successfully");

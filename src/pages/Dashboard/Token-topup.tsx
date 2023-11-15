@@ -17,7 +17,6 @@ const TokenTopup: NextPageWithLayout = () => {
     });
 
     const result = await response.json();
-    console.log(result);
 
     window.location.href = result.session.url;
   };
