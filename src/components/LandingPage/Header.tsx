@@ -15,10 +15,12 @@ function Header() {
     emailaddress: user?.primaryEmailAddress?.emailAddress,
   };
 
+  console.log(userDataToSaved.emailaddress);
+
   if (isSignedIn) {
     const storeUserData = async () => {
       try {
-        const response = await fetch("/api/userData", {
+        const response = await fetch("/api/UserData/userData", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

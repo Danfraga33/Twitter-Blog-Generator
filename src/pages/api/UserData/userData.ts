@@ -6,6 +6,7 @@ export default async function handler(req: NextRequest, res: NextResponse) {
   await connectDB();
   if (req.method === "POST") {
     try {
+      console.log(req.body);
       const { userid, firstName, lastName, fullName, emailaddress } = req.body;
       if (!userid) {
         return res
@@ -21,6 +22,8 @@ export default async function handler(req: NextRequest, res: NextResponse) {
         emailaddress,
         tokens: 20,
       };
+
+      console.log(user.tokens);
       const updatedUser = await User.findOneAndUpdate(
         { userid },
         {
