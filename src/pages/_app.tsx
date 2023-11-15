@@ -4,6 +4,7 @@ import { AppProps } from "next/app";
 import { NextPage } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Roboto } from "next/font/google";
+import connectDB from "../components/Utils/connectMongo";
 
 const roboto = Roboto({ weight: "400", subsets: ["latin"] });
 
