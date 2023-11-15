@@ -30,9 +30,9 @@
     "next-connect": "^1.0.0",
     "node-fetch": "^3.3.2",
     "openai": "^4.17.3",
-    "react": "^18.2.0",
+    "react": "latest",
     "react-copy-to-clipboard": "^5.1.0",
-    "react-dom": "^18.2.0",
+    "react-dom": "latest",
     "react-icons": "^4.11.0",
     "react-share": "^4.4.1",
     "react-twitter-embed": "^4.0.4",
@@ -63,6 +63,6 @@
     "prettier": "^3.0.3",
     "storybook": "^7.5.3",
     "tailwindcss": "latest",
-    "typescript": "5.2.2"
+    "typescript": "latest"
   }
 }
