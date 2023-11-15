@@ -3,9 +3,9 @@ import connectDB from "../../../components/Utils/connectMongo";
 import User from "../../../components/models/UserSchema";
 
 export default async function handler(req: NextRequest, res: NextResponse) {
+  await connectDB();
   if (req.method === "POST") {
     try {
-      await connectDB();
       const { userid, firstName, lastName, fullName, emailaddress } = req.body;
       if (!userid) {
         return res

@@ -30,27 +30,26 @@ const AppLayout = ({ children }: LayoutProps) => {
         console.error("Error fetching posts:", error);
       }
     }
-    getData();
-  }, []);
-  useEffect(() => {
+
     async function getUserData() {
-      let user;
       try {
         const response = await fetch("/api/UserData/getUserData", {
           method: "GET",
         });
         if (response.ok) {
-          user = await response.json();
+          const user = await response.json();
           setTokens(user[0].tokens);
         } else {
-          console.log("NOPE:", user);
+          console.log("NOPE");
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
     }
+
+    getData();
     getUserData();
-  }, [posts]);
+  }, []);
 
   const style = {
     width: "100%",

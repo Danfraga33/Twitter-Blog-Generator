@@ -40,7 +40,7 @@ const TokenTopup: NextPageWithLayout = () => {
     }
 
     getUserData();
-  }, [tokens]);
+  }, []);
   return (
     <div className="flex justify-center items-center h-full bg-[#151515]">
       <Stack>
