@@ -27,10 +27,9 @@ function Header() {
         });
 
         const result = await response.json();
-        console.log(result);
 
         if (response.ok) {
-          console.log("User data stored successfully");
+          console.log("User data stored successfully:", result);
         } else {
           console.error("Error storing user data:", result.error);
         }
