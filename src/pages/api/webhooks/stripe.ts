@@ -29,6 +29,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(500).json({ error: "failed to load data" });
     }
 
+    console.log(event);
+
     switch (event.type) {
       case "payment_intent.succeeded":
         {
