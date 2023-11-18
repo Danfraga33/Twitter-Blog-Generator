@@ -1,39 +1,37 @@
-import stripeInit from "stripe";
-import { getAuth } from "@clerk/nextjs/server";
-import Cors from "micro-cors";
-import verifyStripe from "@webdeveducation/next-verify-stripe";
+import stripeInit, { Stripe } from "stripe";
 import UserSchema from "../../../components/models/UserSchema";
+import type { NextApiRequest, NextApiResponse } from "next";
+import { buffer } from "stream/consumers";
 
-const cors = Cors({
-  allowMethods: ["POST", "HEAD"],
-});
+const stripe = new stripeInit(process.env.STRIPE_SECRET_KEY as string);
 
 export const config = {
   api: {
     bodyParser: false,
   },
 };
-const stripe = stripeInit(process.env.STRIPE_SECRET_KEY);
-const endpointSecret = process.env.WEBHOOK_SECRET;
-const handler = async (req, res) => {
+
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
-    let event;
+    const body = await buffer(req);
+    const signature = req.headers["stripe-signature"];
+
+    let event: Stripe.Event;
+
     try {
-      event = verifyStripe({
-        req,
-        stripe,
-        endpointSecret,
-      });
+      event = stripe.webhooks.constructEvent(
+        body.toString(),
+        signature ?? "",
+        process.env.STRIPE_WEBHOOK_SECRET as string,
+      );
     } catch (error) {
       console.error(error);
+      return res.status(500).json({ error: "failed to load data" });
     }
+
     switch (event.type) {
       case "payment_intent.succeeded":
         {
-          /// USER ID
-          const { userId } = getAuth(req);
-          const userid = userId;
-
           /// PAYMENT ID
           const paymentIntent = event?.data?.object;
           const paymentUserId = paymentIntent.metadata.sub;
@@ -56,7 +54,6 @@ const handler = async (req, res) => {
           );
           console.log(userProfile);
           console.log("paymentUserId:", paymentUserId);
-          console.log("userid:", userid);
         }
         break;
       default:
@@ -66,4 +63,4 @@ const handler = async (req, res) => {
   }
 };
 
-export default cors(handler);
+export default handler;

@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
+    "stripe:local": "stripe listen --forward-to localhost:3000/api/webhooks/stripe",
     "build-storybook": "storybook build"
   },
   "dependencies": {
