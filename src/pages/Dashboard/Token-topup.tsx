@@ -18,7 +18,7 @@ const TokenTopup: NextPageWithLayout = () => {
 
     const result = await response.json();
 
-    window.location.href = result.session.url;
+    window.location.href = result?.session?.url;
   };
 
   useEffect(() => {
