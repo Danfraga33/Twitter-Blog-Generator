@@ -34,7 +34,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         process.env.STRIPE_WEBHOOK_SECRET,
       );
     } catch (error) {
-      console.error(error);
+      console.error("Webook Problem", error);
       return res.status(500).json({ error: "failed to load data" });
     }
 
