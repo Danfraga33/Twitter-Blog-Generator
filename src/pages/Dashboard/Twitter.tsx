@@ -71,7 +71,6 @@ function Twitter() {
   return (
     <ThemeProvider theme={customTheme}>
       <CssBaseline />
-
       <Grid
         p={4}
         m={0}
