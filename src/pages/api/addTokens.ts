@@ -4,7 +4,7 @@ import { getAuth } from "@clerk/nextjs/server";
 if (!process.env.STRIPE_SECRET_KEY) {
   throw new Error("Missing Stripe environment variables");
 }
-
+ 
 const stripe = new stripeInit(process.env.STRIPE_SECRET_KEY);
 
 export default async function handler(req, res) {
