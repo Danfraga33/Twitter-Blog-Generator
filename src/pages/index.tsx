@@ -7,7 +7,7 @@ function Index() {
   return (
     <div className="px-10 py-1">
       <Header />
-      <Hero />
+      <Hero /> 
       <Features />
     </div>
   );
